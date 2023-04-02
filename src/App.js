@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
+  const [count, setCount] = useState(0);
+  const [age, setAge] = useState(20);
+
+  useEffect(()=> {
+    if (count !== 0 && count < 3)  {
+      setAge(age + 1)
+    }
+  }, [count])
+
+  const addCount = () => {
+    setCount(count + 1)
+    console.log(count);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>안녕하십니까 전 {age}살 입니다.</div>
+      <button onClick={addCount}>누르면 1살 먹기</button>
     </div>
   );
 }
